@@ -1,9 +1,6 @@
 {
   "expo": {
-    "scheme": "tamagui-app",
-    "extra": {
-      "hankoApiUrl": process.env.HANKO_API_URL,
-    },
+    "scheme": "kuskus",
     "userInterfaceStyle": "automatic",
     "splash": {
       "backgroundColor": "#ddffe2",
@@ -12,6 +9,12 @@
     },
     "icon": "./assets/icon.png",
     "name": "kuskus",
-    "slug": "kuskus"
+    "slug": "kuskus",
+    "extra": {
+      "eas": {
+        "projectId": "37d6f992-dc74-4063-86b7-113c6530141f"
+      }
+    },
+    "owner": "nikitavoloboev"
   }
 }

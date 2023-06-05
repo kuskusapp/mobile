@@ -1,11 +1,10 @@
-import { useRouter } from "expo-router"
-import { Button, H1, Paragraph, YStack } from "tamagui"
+import Constants from "expo-constants"
+import { Button, Form, H1, Input, Paragraph, YStack } from "tamagui"
 
+import { HankoAuth } from "../components/HankoAuth"
 import { MyStack } from "../components/MyStack"
 
 export default function Home() {
-  const router = useRouter()
-
   return (
     <MyStack>
       <YStack space="$4" maxWidth={600}>
@@ -13,17 +12,17 @@ export default function Home() {
         <Paragraph textAlign="center">Fast todo app with AI features</Paragraph>
       </YStack>
 
-      {/* <Button onPress={() => router.push("/users/testuser")}>
-        Go to user page
-      </Button> */}
+      <HankoAuth />
 
-      <Button
+      {/* <Button
         onPress={() => {
-          router.push("/login")
+          // const hankoApi = Constants
+          // console.log(hankoApi?.expoConfig?.extra?.hankoApi)
+          // router.push("/login")
         }}
       >
         Login
-      </Button>
+      </Button> */}
 
       {/* <YStack space="$5">
         <YGroup bordered separator={<Separator />} theme="green">

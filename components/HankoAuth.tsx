@@ -1,34 +1,43 @@
-import { useCallback, useEffect, useMemo } from "react"
-import { Hanko, register } from "@teamhanko/hanko-elements"
-import { useRouter } from "next/router"
-
-const api = process.env.NEXT_PUBLIC_HANKO_API!
+import { useEffect, useState } from "react"
+import { Button, Form, H4, SizeTokens, Spinner } from "tamagui"
 
 interface Props {
-  setError(error: Error): void
+  size?: SizeTokens
 }
 
-function HankoAuth({ setError }: Props) {
-  const router = useRouter()
-  const hankoClient = useMemo(() => new Hanko(api), [])
-
-  const redirectToTodos = useCallback(() => {
-    router.replace("/todo").catch(setError)
-  }, [router, setError])
-
-  useEffect(() => {
-    register(api).catch(setError)
-  }, [setError])
-
-  useEffect(
-    () =>
-      hankoClient.onAuthFlowCompleted(() => {
-        redirectToTodos()
-      }),
-    [hankoClient, redirectToTodos]
+export function HankoAuth(props: Props) {
+  const [status, setStatus] = useState<"off" | "submitting" | "submitted">(
+    "off"
   )
 
-  return <hanko-auth />
-}
+  useEffect(() => {
+    if (status === "submitting") {
+      const timer = setTimeout(() => setStatus("off"), 2000)
+      return () => {
+        clearTimeout(timer)
+      }
+    }
+  }, [status])
 
-export default HankoAuth
+  return (
+    <Form
+      alignItems="center"
+      minWidth={300}
+      space
+      onSubmit={() => setStatus("submitting")}
+      borderWidth={1}
+      borderRadius="$4"
+      backgroundColor="$background"
+      borderColor="$borderColor"
+      padding="$8"
+    >
+      <H4>{status[0].toUpperCase() + status.slice(1)}</H4>
+
+      <Form.Trigger asChild disabled={status !== "off"}>
+        <Button icon={status === "submitting" ? () => <Spinner /> : undefined}>
+          Submit
+        </Button>
+      </Form.Trigger>
+    </Form>
+  )
+}
