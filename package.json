@@ -14,6 +14,7 @@
     "@tamagui/lucide-icons": "^1.30.19",
     "@tamagui/themes": "^1.30.19",
     "@teamhanko/hanko-elements": "^0.5.5-beta",
+    "@teamhanko/hanko-frontend-sdk": "^0.5.4-beta",
     "dotenv": "^16.1.4",
     "expo": "^48.0.19",
     "expo-constants": "~14.2.1",
