@@ -1,6 +1,9 @@
 {
   "expo": {
     "scheme": "tamagui-app",
+    "extra": {
+      "hankoApiUrl": process.env.HANKO_API_URL,
+    },
     "userInterfaceStyle": "automatic",
     "splash": {
       "backgroundColor": "#ddffe2",
